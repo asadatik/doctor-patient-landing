@@ -8,9 +8,10 @@ import useNav from '../hooks/useNav'
 
 const NAV_LINKS = [
   { label: 'Features',     id: 'features'      },
-  { label: 'How It Works', id: 'how-it-works'  },
+
   { label: 'Doctors',      id: 'doctors'       },
-  { label: 'Testimonials', id: 'testimonials'  },
+ 
+  
 ]
 
 export default function Navbar() {
@@ -21,7 +22,7 @@ export default function Navbar() {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0,   opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="fixed top-0 left-0 right-0 z-[100]"
+      className="sticky top-0 left-0 right-0 z-100"
       style={{
         background:     scrolled ? 'rgba(6,14,31,0.88)' : 'transparent',
         backdropFilter: scrolled ? 'blur(18px)'         : 'none',
@@ -31,7 +32,7 @@ export default function Navbar() {
     >
       <div className="max-w-[1400px] mx-auto px-6 h-[70px] flex items-center justify-between">
 
-        {/* ── Logo ── */}
+
         <button
           onClick={() => scrollTo('hero')}
           className="font-serif text-[1.55rem] font-semibold tracking-[0.01em] text-white cursor-pointer bg-transparent border-none"
@@ -39,14 +40,13 @@ export default function Navbar() {
           Medi<span style={{ color: '#1ECECA' }}>Flow</span>
         </button>
 
-        {/* ── Desktop nav ── */}
         <nav className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map(({ label, id }) => (
             <NavLink key={id} label={label} onClick={() => scrollTo(id)} />
           ))}
         </nav>
 
-        {/* ── Desktop CTA ── */}
+      
         <div className="hidden md:flex items-center gap-3">
           <motion.button
             whileHover={{ color: '#1ECECA' }}
@@ -74,7 +74,7 @@ export default function Navbar() {
           </motion.button>
         </div>
 
-        {/* ── Hamburger ── */}
+
         <motion.button
           className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg bg-transparent border-none cursor-pointer"
           style={{ color: '#ffffff' }}
@@ -86,7 +86,7 @@ export default function Navbar() {
         </motion.button>
       </div>
 
-      {/* ── Mobile Drawer ── */}
+      {/*  Mobile*/}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -117,10 +117,10 @@ export default function Navbar() {
               </motion.button>
             ))}
 
-            {/* Divider */}
+    
             <div className="my-2" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }} />
 
-            {/* Mobile CTAs */}
+         
             <motion.button
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
@@ -151,7 +151,7 @@ export default function Navbar() {
   )
 }
 
-/* ── Reusable desktop nav link ── */
+//
 function NavLink({ label, onClick }) {
   return (
     <motion.button
@@ -163,7 +163,7 @@ function NavLink({ label, onClick }) {
     >
       {label}
 
-      {/* Underline reveal on hover */}
+    
       <motion.span
         className="absolute -bottom-0.5 left-0 h-[1.5px] w-full rounded-full"
         style={{ background: '#1ECECA', scaleX: 0, originX: 0 }}

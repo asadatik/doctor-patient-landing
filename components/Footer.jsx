@@ -41,7 +41,7 @@ export default function Footer() {
   return (
     <footer style={{ background: '#060E1F', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
 
-      {/* ── Newsletter band ── */}
+      {/*Newsletter */}
       <div style={{ background: 'rgba(30,206,202,0.05)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
         <div className="max-w-[1200px] mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
@@ -94,7 +94,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="max-w-[1200px] mx-auto px-6 py-16">
+      <div className="max-w-[1300px] mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.8fr_1fr_1fr_1fr] gap-12">
 
           <div className="flex flex-col gap-6">
@@ -111,7 +111,7 @@ export default function Footer() {
               modern healthcare teams worldwide.
             </p>
 
-            {/* Contact*/}
+         
             <ul className="flex flex-col gap-3">
               {CONTACT.map(({ Icon, text }) => (
                 <li key={text} className="flex items-center gap-3 text-[0.82rem]" style={{ color: '#8899BB' }}>
@@ -124,7 +124,6 @@ export default function Footer() {
               ))}
             </ul>
 
-            {/* Social icons */}
             <div className="flex gap-2">
               {SOCIALS.map(({ Icon, href, label }) => (
                 <motion.a
