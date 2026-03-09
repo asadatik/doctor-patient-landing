@@ -4,7 +4,7 @@
 Responsive landing page for a doctor-patient management system. All 7 core requirements are fully implemented.  
 🌐 Links
 
-Live Demo: https://doctor-patient-landing.vercel.app
+Live Demo: https://doctor-patient-management-three.vercel.app
  — view the landing page live
 
 GitHub Repo: https://github.com/asadatik/doctor-patient-landing
@@ -21,6 +21,7 @@ GitHub Repo: https://github.com/asadatik/doctor-patient-landing
 
 ## 📁 Project Structure
 
+```
 ├── data/
 │   ├── doctorData.js
 │   └── feature.js
@@ -36,6 +37,7 @@ GitHub Repo: https://github.com/asadatik/doctor-patient-landing
 │       └── showcaseSection/
 ├── public/
 └── package.json
+```
 
 
 ## 🚀 Setup & Run
@@ -62,3 +64,4 @@ JavaScript (ES6+) — core scripting
 Tailwind CSS — utility-first styling
 
 Framer Motion — smooth animations and transitions
+
