@@ -3,7 +3,7 @@ import Hero from '@/components/Hero'
 
 import Footer from '@/components/Footer'
 import FeaturesSection from '../components/Featuressection'
-
+import ShowcaseSection from  '../components/doctors/ShowcaseSection'  
 
 export default function Home() {
   return (
@@ -11,7 +11,8 @@ export default function Home() {
       <Navbar />
       <section id="home">
         <Hero />
-         <FeaturesSection></FeaturesSection>
+       <FeaturesSection></FeaturesSection>
+        <ShowcaseSection></ShowcaseSection>
       </section>
       
       <Footer />
