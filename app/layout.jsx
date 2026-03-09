@@ -6,10 +6,10 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata = {
-  title: 'Doctor-Patient Management System | Streamline Healthcare Connections',
+  title: 'MediFlow | Streamline Healthcare Connections',
   description: 'A modern healthcare platform connecting doctors and patients with secure appointments, medical records, and real-time communication.',
   keywords: 'healthcare, doctor, patient, appointments, medical records, telehealth',
-
+ 
 }
 
 export default function RootLayout({ children }) {
