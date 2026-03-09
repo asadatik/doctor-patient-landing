@@ -6,11 +6,12 @@ import { Menu, X, ArrowRight } from 'lucide-react'
 import useNav from '../hooks/useNav'
 
 
+
 const NAV_LINKS = [
   { label: 'Features',     id: 'features'      },
 
   { label: 'Doctors',      id: 'doctors'       },
- 
+ { label: 'Book Now',    id: 'cta'       },
   
 ]
 
@@ -40,9 +41,9 @@ export default function Navbar() {
           Medi<span style={{ color: '#1ECECA' }}>Flow</span>
         </button>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden text-amber-50  md:flex items-center gap-6">
           {NAV_LINKS.map(({ label, id }) => (
-            <NavLink key={id} label={label} onClick={() => scrollTo(id)} />
+            <NavLink  key={id} label={label} onClick={() => scrollTo(id)} />
           ))}
         </nav>
 
@@ -52,7 +53,7 @@ export default function Navbar() {
             whileHover={{ color: '#1ECECA' }}
             transition={{ duration: 0.15 }}
             onClick={() => scrollTo('cta')}
-            className="text-[0.85rem] font-medium bg-transparent border-none cursor-pointer"
+            className="text-md font-medium bg-transparent border-none cursor-pointer"
             style={{ color: '#8899BB' }}
           >
             Sign In
@@ -86,7 +87,7 @@ export default function Navbar() {
         </motion.button>
       </div>
 
-      {/*  Mobile*/}
+   {/*  Mobile*/}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -125,7 +126,7 @@ export default function Navbar() {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.28 }}
-              className="text-[0.9rem] font-medium py-3 bg-transparent border-none cursor-pointer text-left px-3 rounded-lg"
+              className="text-lg font-medium py-3 bg-transparent border-none cursor-pointer text-left px-3 rounded-lg"
               style={{ color: '#8899BB' }}
               onClick={() => scrollTo('cta')}
             >
@@ -151,12 +152,12 @@ export default function Navbar() {
   )
 }
 
-//
+// NavLink component 
 function NavLink({ label, onClick }) {
   return (
     <motion.button
       onClick={onClick}
-      className="text-[0.875rem] font-medium bg-transparent border-none cursor-pointer relative"
+      className="text-lg font-medium bg-transparent border-none cursor-pointer relative"
       style={{ color: '#8899BB' }}
       whileHover={{ color: '#ffffff' }}
       transition={{ duration: 0.15 }}
