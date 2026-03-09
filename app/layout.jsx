@@ -9,23 +9,7 @@ export const metadata = {
   title: 'Doctor-Patient Management System | Streamline Healthcare Connections',
   description: 'A modern healthcare platform connecting doctors and patients with secure appointments, medical records, and real-time communication.',
   keywords: 'healthcare, doctor, patient, appointments, medical records, telehealth',
-  icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
-  },
+
 }
 
 export default function RootLayout({ children }) {

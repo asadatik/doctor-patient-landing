@@ -1,111 +1,202 @@
 'use client'
 
-import Link from 'next/link'
-import { Linkedin, Twitter, Github } from 'lucide-react'
+import { motion } from 'framer-motion'
+import {
+  ArrowRight, Mail, Phone, MapPin,
+  Twitter, Linkedin, Facebook, Youtube,
+  Heart
+} from 'lucide-react'
+import { useState } from 'react'
+
+const LINKS = {
+  Product:  ['Features', 'How It Works', 'Pricing', 'Changelog', 'API Docs'],
+  Company:  ['About Us', 'Careers', 'Press Kit', 'Blog', 'Contact'],
+  Legal:    ['Privacy Policy', 'Terms of Service', 'HIPAA Policy', 'Security'],
+}
+
+const SOCIALS = [
+  { Icon: Twitter,  href: '#', label: 'Twitter'  },
+  { Icon: Linkedin, href: '#', label: 'LinkedIn'  },
+  { Icon: Facebook, href: '#', label: 'Facebook'  },
+  { Icon: Youtube,  href: '#', label: 'YouTube'   },
+]
+
+const CONTACT = [
+  { Icon: Mail,    text: 'hello@mediflow.com'     },
+  { Icon: Phone,   text: '+1 (800) 123-4567'      },
+  { Icon: MapPin,  text: 'San Francisco, CA'      },
+]
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear()
+  const [email, setEmail]   = useState('')
+  const [sent, setSent]     = useState(false)
 
-  const footerLinks = {
-    Product: [
-      { label: 'Features', href: '#' },
-      { label: 'Pricing', href: '#' },
-      { label: 'Security', href: '#' },
-      { label: 'Roadmap', href: '#' }
-    ],
-    Company: [
-      { label: 'About', href: '#' },
-      { label: 'Blog', href: '#' },
-      { label: 'Careers', href: '#' },
-      { label: 'Contact', href: '#' }
-    ],
-    Legal: [
-      { label: 'Privacy Policy', href: '#' },
-      { label: 'Terms of Service', href: '#' },
-      { label: 'HIPAA Compliance', href: '#' },
-      { label: 'Cookie Policy', href: '#' }
-    ]
+  const handleSubmit = () => {
+    if (email.trim()) { setSent(true); setEmail('') }
   }
 
-  const socialLinks = [
-    { Icon: Twitter, href: '#', label: 'Twitter' },
-    { Icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { Icon: Github, href: '#', label: 'GitHub' }
-  ]
+  const scrollTo = (id) =>
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 
   return (
-    <footer className="bg-slate-900 text-slate-300">
-      {/* Main Footer Content */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
-          {/* Brand Column */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2 font-bold text-xl mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center text-white">
-                ⚕️
-              </div>
-              <span className="text-white">HealthHub</span>
-            </Link>
-            <p className="text-slate-400 text-sm leading-relaxed mb-6">
-              Transforming healthcare through innovative digital solutions.
+    <footer style={{ background: '#060E1F', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+
+      {/* ── Newsletter band ── */}
+      <div style={{ background: 'rgba(30,206,202,0.05)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+        <div className="max-w-[1200px] mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <p className="font-serif text-[1.5rem] font-light text-white leading-snug">
+              Stay ahead in <em className="italic" style={{ color: '#1ECECA' }}>modern healthcare.</em>
             </p>
-            
-            {/* Social Links */}
-            <div className="flex gap-4">
-              {socialLinks.map(({ Icon, href, label }) => (
-                <a
+            <p className="text-[0.85rem] mt-1" style={{ color: '#8899BB' }}>
+              Join 10,000+ healthcare professionals. No spam, ever.
+            </p>
+          </div>
+
+          {sent ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-[0.875rem] font-medium px-6 py-3 rounded-full"
+              style={{ background: 'rgba(30,206,202,0.1)', border: '1px solid rgba(30,206,202,0.25)', color: '#1ECECA' }}
+            >
+              ✓ You're subscribed!
+            </motion.div>
+          ) : (
+            <div className="flex gap-2 w-full md:w-auto">
+              <input
+                type="email"
+                placeholder="Enter your work email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && handleSubmit()}
+                className="flex-1 md:w-64 text-[0.875rem] px-5 py-3 rounded-full outline-none"
+                style={{
+                  background:  'rgba(255,255,255,0.06)',
+                  border:      '1px solid rgba(255,255,255,0.12)',
+                  color:       '#ffffff',
+                }}
+                onFocus={e  => (e.target.style.borderColor = 'rgba(30,206,202,0.5)')}
+                onBlur={e   => (e.target.style.borderColor = 'rgba(255,255,255,0.12)')}
+              />
+              <motion.button
+                whileHover={{ scale: 1.04, backgroundColor: '#3DD8D8' }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ duration: 0.15 }}
+                onClick={handleSubmit}
+                className="inline-flex items-center gap-2 text-[0.85rem] font-semibold px-5 py-3 rounded-full border-none cursor-pointer shrink-0"
+                style={{ background: '#1ECECA', color: '#060E1F', boxShadow: '0 0 20px rgba(30,206,202,0.2)' }}
+              >
+                Subscribe <ArrowRight size={15} />
+              </motion.button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="max-w-[1200px] mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.8fr_1fr_1fr_1fr] gap-12">
+
+          <div className="flex flex-col gap-6">
+    
+            <button
+              onClick={() => scrollTo('hero')}
+              className="font-serif text-[1.55rem] font-semibold text-white text-left bg-transparent border-none cursor-pointer w-fit"
+            >
+              Medi<span style={{ color: '#1ECECA' }}>Flow</span>
+            </button>
+
+            <p className="text-[0.875rem] leading-[1.8]" style={{ color: '#8899BB', maxWidth: 260 }}>
+              The all-in-one platform connecting doctors and patients — built for
+              modern healthcare teams worldwide.
+            </p>
+
+            {/* Contact*/}
+            <ul className="flex flex-col gap-3">
+              {CONTACT.map(({ Icon, text }) => (
+                <li key={text} className="flex items-center gap-3 text-[0.82rem]" style={{ color: '#8899BB' }}>
+                  <span className="flex items-center justify-center w-7 h-7 rounded-lg shrink-0"
+                    style={{ background: 'rgba(30,206,202,0.08)', border: '1px solid rgba(30,206,202,0.15)', color: '#1ECECA' }}>
+                    <Icon size={13} strokeWidth={1.8} />
+                  </span>
+                  {text}
+                </li>
+              ))}
+            </ul>
+
+            {/* Social icons */}
+            <div className="flex gap-2">
+              {SOCIALS.map(({ Icon, href, label }) => (
+                <motion.a
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="text-slate-400 hover:text-white transition-colors"
+                  whileHover={{ y: -3, borderColor: 'rgba(30,206,202,0.4)', color: '#1ECECA', background: 'rgba(30,206,202,0.1)' }}
+                  transition={{ duration: 0.18 }}
+                  className="w-9 h-9 rounded-xl flex items-center justify-center no-underline"
+                  style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#8899BB' }}
                 >
-                  <Icon className="w-5 h-5" />
-                </a>
+                  <Icon size={15} strokeWidth={1.8} />
+                </motion.a>
               ))}
             </div>
           </div>
 
-          {/* Footer Links */}
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category}>
-              <h3 className="font-semibold text-white mb-4">{category}</h3>
-              <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link.label}>
+
+          {Object.entries(LINKS).map(([heading, links], colIdx) => (
+            <div key={heading}>
+              <h4 className="text-[0.72rem] font-semibold uppercase tracking-[0.12em] mb-5"
+                style={{ color: '#1ECECA' }}>
+                {heading}
+              </h4>
+              <ul className="flex flex-col gap-3">
+                {links.map((link, i) => (
+                  <motion.li key={link}
+                    initial={{ opacity: 0, x: -8 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: colIdx * 0.05 + i * 0.04, duration: 0.3 }}>
                     <a
-                      href={link.href}
-                      className="text-slate-400 hover:text-white transition-colors text-sm"
+                      href="#"
+                      className="text-[0.875rem] no-underline transition-colors duration-200 flex items-center gap-1.5 group"
+                      style={{ color: 'rgba(255,255,255,0.55)' }}
+                      onMouseEnter={e => (e.currentTarget.style.color = '#ffffff')}
+                      onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.55)')}
                     >
-                      {link.label}
+                      <span className="w-0 group-hover:w-3 overflow-hidden transition-all duration-200 text-[#1ECECA]">›</span>
+                      {link}
                     </a>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
+      </div>
 
-        {/* Divider */}
-        <div className="border-t border-slate-800 pt-8">
-          {/* Bottom Footer */}
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-slate-400 text-sm">
-              © {currentYear} HealthHub. All rights reserved.
-            </p>
-            <div className="flex gap-6">
-              <a href="#" className="text-slate-400 hover:text-white text-sm transition-colors">
-                Privacy Policy
+   
+      <div style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+        <div className="max-w-[1200px] mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-[0.78rem] flex items-center gap-1.5" style={{ color: '#8899BB' }}>
+            © 2025 MediFlow Inc. Made with
+           
+            for better healthcare.
+          </p>
+
+          <div className="flex items-center gap-6">
+            {['Privacy', 'Terms', 'Cookies', 'HIPAA'].map(l => (
+              <a key={l} href="#"
+                className="text-[0.78rem] no-underline transition-colors duration-200"
+                style={{ color: '#8899BB' }}
+                onMouseEnter={e => (e.target.style.color = '#1ECECA')}
+                onMouseLeave={e => (e.target.style.color = '#8899BB')}>
+                {l}
               </a>
-              <a href="#" className="text-slate-400 hover:text-white text-sm transition-colors">
-                Terms of Service
-              </a>
-              <a href="#" className="text-slate-400 hover:text-white text-sm transition-colors">
-                Sitemap
-              </a>
-            </div>
+            ))}
           </div>
         </div>
       </div>
+
     </footer>
   )
 }
